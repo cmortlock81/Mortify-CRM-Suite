@@ -1,6 +1,6 @@
 # Mortify Business CRM Suite MVP
 
-A contractor-ready SaaS-style business operations portal covering the full customer journey: Lead → Opportunity → Quote → Customer → Project → Helpdesk Ticket → Invoice → Payment. It also includes real IT monitoring for websites, SSL, DNS, TCP, HTTP/HTTPS, keyword, ICMP, and stale agent checks, plus agent metrics, alerting, ticket creation, and operations modules for email ingestion, documents, mobile devices, remote control, patch management, and SIEM correlation.
+A  SaaS-style business operations portal covering the full customer journey: Lead → Opportunity → Quote → Customer → Project → Helpdesk Ticket → Invoice → Payment. It also includes real IT monitoring for websites, SSL, DNS, TCP, HTTP/HTTPS, keyword, ICMP, and stale agent checks, plus agent metrics, alerting, ticket creation, and operations modules for email ingestion, documents, mobile devices, remote control, patch management, and SIEM correlation.
 
 ## Architecture
 
