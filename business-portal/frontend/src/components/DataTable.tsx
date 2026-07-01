@@ -1,0 +1,1 @@
+export function DataTable({rows}:{rows:any[]}){const keys=Object.keys(rows[0]||{}).slice(0,6); return <table className="table"><thead><tr>{keys.map(k=><th key={k}>{k}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={r.id||i}>{keys.map(k=><td key={k}>{String(r[k]??'')}</td>)}</tr>)}</tbody></table>}

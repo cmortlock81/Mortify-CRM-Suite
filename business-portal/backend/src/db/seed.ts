@@ -1,0 +1,2 @@
+import bcrypt from 'bcryptjs'; import {pool} from './pool.js'; import {env} from '../config/env.js';
+const hash=await bcrypt.hash(env.adminPassword,12); await pool.query(`insert into users(email,password_hash,full_name,role) values($1,$2,'System Administrator','admin') on conflict(email) do update set password_hash=excluded.password_hash, role='admin', is_active=true`,[env.adminEmail,hash]); console.log('Seeded admin',env.adminEmail); await pool.end();
