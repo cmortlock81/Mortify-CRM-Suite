@@ -1,3 +1,3 @@
-import {Request,Response,NextFunction} from 'express'; export class ApiError extends Error{constructor(public status:number,public code:string,message:string,public details:any[]=[]){super(message)}}
-export function asyncHandler(fn:any){return (req:Request,res:Response,next:NextFunction)=>Promise.resolve(fn(req,res,next)).catch(next)}
+import {Request,Response,NextFunction,type RequestHandler} from 'express'; export class ApiError extends Error{constructor(public status:number,public code:string,message:string,public details:any[]=[]){super(message)}}
+export function asyncHandler(fn:RequestHandler):RequestHandler{return (req:Request,res:Response,next:NextFunction)=>Promise.resolve(fn(req,res,next)).catch(next)}
 export function errorHandler(err:any,req:Request,res:Response,next:NextFunction){const status=err.status||500; res.status(status).json({error:{code:err.code||'INTERNAL_ERROR',message:err.message||'Unexpected error',details:err.details||[]}})}
