@@ -1,0 +1,2 @@
+export function page(q:any){const page=Math.max(1,Number(q.page||1)); const pageSize=Math.min(100,Math.max(1,Number(q.pageSize||25))); return {page,pageSize,offset:(page-1)*pageSize,sort:String(q.sort||'created_at'),dir:String(q.direction||'desc').toLowerCase()==='asc'?'asc':'desc'}}
+export const list=(data:any[],total:number,p:any)=>({data,pagination:{page:p.page,pageSize:p.pageSize,total:Number(total)}});

@@ -1,0 +1,1 @@
+export const roleRoutes={admin:['users'],sales:['companies','leads','opportunities','quotes'],support:['tickets','monitoring'],finance:['invoices'],project_manager:['projects'],read_only:['dashboard']};

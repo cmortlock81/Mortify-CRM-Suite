@@ -1,0 +1,3 @@
+const API=import.meta.env.VITE_API_URL||'http://localhost:4000/api';
+export async function api(path:string,options:RequestInit={}){const token=localStorage.getItem('token'); const res=await fetch(API+path,{...options,headers:{'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{ }),...(options.headers||{})}}); if(!res.ok) throw new Error((await res.json()).error?.message||res.statusText); return res.status===204?null:res.json()}
+export const get=(p:string)=>api(p); export const post=(p:string,b:any)=>api(p,{method:'POST',body:JSON.stringify(b)}); export const patch=(p:string,b:any)=>api(p,{method:'PATCH',body:JSON.stringify(b)});

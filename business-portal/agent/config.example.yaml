@@ -1,0 +1,11 @@
+api_url: "https://portal.example.com"
+asset_id: "asset-uuid"
+token: "raw-agent-token"
+interval_seconds: 60
+verify_tls: true
+process_checks:
+  - name: "nginx"
+  - name: "postgres"
+service_checks:
+  - name: "nginx"
+  - name: "postgresql"

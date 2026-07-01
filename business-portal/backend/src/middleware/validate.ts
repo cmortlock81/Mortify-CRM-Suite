@@ -1,0 +1,2 @@
+import {Request,Response,NextFunction} from 'express'; import {ZodSchema} from 'zod'; import {ApiError} from './errorHandler.js';
+export const validate=(schema:ZodSchema)=>(req:Request,res:Response,next:NextFunction)=>{const r=schema.safeParse({body:req.body,query:req.query,params:req.params}); if(!r.success) return next(new ApiError(400,'VALIDATION_ERROR','The request payload is invalid.',r.error.issues)); Object.assign(req,r.data); next()};

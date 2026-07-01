@@ -1,0 +1,2 @@
+import dotenv from 'dotenv'; dotenv.config();
+export const env={nodeEnv:process.env.NODE_ENV??'development',port:Number(process.env.PORT??4000),databaseUrl:process.env.DATABASE_URL??'postgresql://postgres:postgres@localhost:5432/business_portal',jwtSecret:process.env.JWT_SECRET??'replace_me',jwtExpiresIn:process.env.JWT_EXPIRES_IN??'8h',frontendUrl:process.env.FRONTEND_URL??'http://localhost:5173',adminEmail:process.env.ADMIN_SEED_EMAIL??'admin@example.com',adminPassword:process.env.ADMIN_SEED_PASSWORD??'ChangeMe123!',aiProvider:process.env.AI_PROVIDER??'template'};

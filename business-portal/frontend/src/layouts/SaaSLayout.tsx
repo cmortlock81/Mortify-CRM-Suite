@@ -1,0 +1,2 @@
+import {NavLink,Outlet} from 'react-router-dom'; const links=['dashboard','companies','contacts','leads','opportunities','quotes','projects','tickets','invoices','monitoring/assets','monitoring/alerts','ai','users'];
+export function SaaSLayout(){return <div className="app"><aside><h2>Mortify CRM</h2>{links.map(l=><NavLink key={l} to={'/'+l}>{l}</NavLink>)}</aside><main><header>Business Operations Portal</header><Outlet/></main></div>}

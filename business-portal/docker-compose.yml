@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16
+    environment: { POSTGRES_USER: postgres, POSTGRES_PASSWORD: postgres, POSTGRES_DB: business_portal }
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U postgres -d business_portal"], interval: 5s, timeout: 5s, retries: 10 }
+  backend:
+    image: node:22-alpine
+    working_dir: /app/backend
+    command: sh -c "npm install && npm run migrate && npm run seed && npm run dev"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/business_portal
+      JWT_SECRET: replace_me
+      FRONTEND_URL: http://localhost:5173
+      ADMIN_SEED_EMAIL: admin@example.com
+      ADMIN_SEED_PASSWORD: ChangeMe123!
+    volumes: [./backend:/app/backend]
+    ports: ["4000:4000"]
+    depends_on: { postgres: { condition: service_healthy } }
+  monitoring-worker:
+    image: node:22-alpine
+    working_dir: /app/backend
+    command: sh -c "npm install && npm run worker"
+    environment: { DATABASE_URL: postgresql://postgres:postgres@postgres:5432/business_portal, JWT_SECRET: replace_me }
+    volumes: [./backend:/app/backend]
+    depends_on: [backend]
+  frontend:
+    image: node:22-alpine
+    working_dir: /app/frontend
+    command: sh -c "npm install && npm run dev"
+    environment: { VITE_API_URL: http://localhost:4000/api }
+    volumes: [./frontend:/app/frontend]
+    ports: ["5173:5173"]
+    depends_on: [backend]
+volumes: { pgdata: {} }

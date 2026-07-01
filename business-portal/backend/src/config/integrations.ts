@@ -1,0 +1,1 @@
+export const integrations={accounting:{xero:!!process.env.XERO_CLIENT_ID,quickbooks:!!process.env.QUICKBOOKS_CLIENT_ID,sage:!!process.env.SAGE_CLIENT_ID},payments:{stripe:!!process.env.STRIPE_SECRET_KEY},ai:{provider:process.env.AI_PROVIDER??'template'}};
