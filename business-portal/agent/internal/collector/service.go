@@ -5,7 +5,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/shirou/gopsutil/v3/process"
 	cfg "mortify-crm-agent/internal/config"
 )
 
@@ -27,17 +26,5 @@ func serviceRunning(name string) bool {
 		out, err := exec.Command("sc", "query", name).CombinedOutput()
 		return err == nil && strings.Contains(strings.ToLower(string(out)), "running")
 	}
-	return processNameRunning(name)
-}
-
-func processNameRunning(name string) bool {
-	service := strings.ToLower(name)
-	ps, _ := process.Processes()
-	for _, p := range ps {
-		n, _ := p.Name()
-		if strings.ToLower(n) == service {
-			return true
-		}
-	}
-	return false
+	return commandContains(name)
 }
